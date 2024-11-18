@@ -25,7 +25,13 @@ jobs:
         df -h .
         df -hl /var/lib/docker/
         echo "=============================================================================="
-
+    
+    - name: Clean /tmp directory
+      run: |
+        find /tmp -type f -mtime +1 -delete
+        find /tmp -type d -mtime +1 -delete
+        df -h /tmp
+        
     # 增加可用磁盘空间
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
