@@ -7,6 +7,12 @@ on:
         required: true
         default: 'alpine:latest'  # 设置默认的 Docker 镜像列表
 
+env:
+  ALIYUN_REGISTRY: "${{ secrets.ALI_REGISTRY }}"
+  ALIYUN_NAME_SPACE: "${{ secrets.ALIYUN_NAME_SPACE }}"
+  ALIYUN_REGISTRY_USER: "${{ secrets.ALI_NAME }}"
+  ALIYUN_REGISTRY_PASSWORD: "${{ secrets.ALI_PASSWORD }}"
+
 jobs:
   pull_and_package:
     runs-on: ubuntu-latest
@@ -22,7 +28,7 @@ jobs:
           
     - name: Login Aliyun Registry
       run: |
-          docker login --username ${ALI_NAME} --password ${ALI_PASSWORD} ${ALI_REGISTRY}
+          docker login -u ${ALIYUN_REGISTRY_USER} -p ${ALIYUN_REGISTRY_PASSWORD} ${ALIYUN_REGISTRY}
           
     - name: Pull Docker Images and Package
       run: |
