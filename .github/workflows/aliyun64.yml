@@ -77,6 +77,8 @@ jobs:
     - name: Copy Model
       run: |
         docker cp $(basename "$image"):/tmp/model ./
+        docker stop $(basename "$image")
+        docker rmi -f "${image}"
         
     - name: Compress the TAR files
       run: tar -czf model.tar.gz ./model
