@@ -22,7 +22,7 @@ jobs:
           
     - name: Login Aliyun Registry
       run: |
-          docker login -u ${ALI_NAME} -p ${ALI_PASSWORD} ${ALI_REGISTRY}
+          docker login --user ${ALI_NAME} --password ${ALI_PASSWORD} ${ALI_REGISTRY}
           
     - name: Pull Docker Images and Package
       run: |
