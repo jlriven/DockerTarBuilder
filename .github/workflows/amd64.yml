@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 1  # 限制下载的 commit 数，减少磁盘使用量
     
     - name: 显示可用磁盘空间
-      run: df --output=avail -h / | tail -n 
+      run: df --output=avail -h / | tail -1
 
     - name: Clean up Docker to free space
       run: |
